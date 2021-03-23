@@ -6,6 +6,9 @@
 %p
   %b Email:
   = @user.email
+%p
+  %b Current sign in IP:
+  = @user.current_sign_in_ip
 
 = link_to 'Edit', edit_user_path(@user)
 \|
