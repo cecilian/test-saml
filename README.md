@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a test app to provide a POC for SAML2 SSO with Devise using the `devise_saml_authenticatable` gem, based on [this article](https://blog.cloud66.com/adding-sso-to-your-rails-application-with-saml/)
 
-Things you may want to cover:
+To setup:
 
-* Ruby version
+- `bundle install`
+- `rails db:create db:migrate`
 
-* System dependencies
+Launch the application **on port 3002**
+```
+bundle exec rails s -p3002
+```
 
-* Configuration
+The ID provider is [Okta](https://dev-47932309-admin.okta.com)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Obtaining certificate fingerprint on OSX
+```
+openssl x509 -text -noout -in ~/Downloads/okta.cert  -fingerprint -sha256
+```
