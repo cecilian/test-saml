@@ -9,6 +9,24 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  config.saml_create_user = true
+  config.saml_update_user = true
+  config.saml_default_user_key = :email
+  config.saml_session_index_key = :session_index
+  config.saml_use_subject = false
+  config.idp_settings_adapter = nil
+  config.saml_configure do |settings|
+    settings.assertion_consumer_service_url     = "http://localhost:3002/users/saml/auth"
+    settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+    settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+    settings.issuer                             = "http://localhost:3002/users/saml/metadata"
+    settings.authn_context                      = ""
+    settings.idp_slo_target_url                 = ""
+    settings.idp_sso_target_url                 = "https://dev-47932309.okta.com/app/dev-47932309_testsaml_1/exkck0fqwss4bKRFN5d6/sso/saml"
+    settings.idp_cert_fingerprint               = '7D:D9:2A:69:55:8B:FF:52:8E:71:DE:07:3C:99:4F:7C:8C:EF:EA:A0:E3:BF:ED:14:E6:A4:9D:61:32:9B:E5:F8'
+    settings.idp_cert_fingerprint_algorithm     = 'http://www.w3.org/2000/09/xmldsig#sha256'
+  end
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
